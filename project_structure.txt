@@ -1,0 +1,22 @@
+momomindset/
+├── src/
+│   ├── client/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── styles/
+│   │   ├── App.tsx
+│   │   └── main.tsx
+│   ├── server/
+│   │   ├── routes/
+│   │   ├── middleware/
+│   │   ├── db/
+│   │   ├── models/
+│   │   └── server.ts
+│   └── shared/
+│       └── types.ts
+├── public/
+├── package.json
+├── vite.config.ts
+├── tsconfig.json
+├── tailwind.config.js
+└── .env
