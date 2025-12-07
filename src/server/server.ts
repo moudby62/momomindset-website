@@ -4,6 +4,12 @@ import dotenv from 'dotenv'
 import { fileURLToPath } from 'url'
 import { dirname } from 'path'
 
+// Import routes
+import authRoutes from './routes/auth'
+import forumRoutes from './routes/forum'
+import newsletterRoutes from './routes/newsletter'
+import { authMiddleware } from './middleware/auth'
+
 // Load environment variables
 dotenv.config()
 
@@ -23,52 +29,14 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok', message: 'MomoMindset API is running' })
 })
 
-// Auth routes (placeholder)
-app.post('/api/auth/register', (req, res) => {
-  const { name, email, password } = req.body
-  console.log('Register request:', { name, email })
-  res.json({ success: true, message: 'User registered successfully' })
-})
+// Routes
+app.use('/api/auth', authRoutes)
+app.use('/api/forum', forumRoutes)
+app.use('/api/newsletter', newsletterRoutes)
 
-app.post('/api/auth/login', (req, res) => {
-  const { email, password } = req.body
-  console.log('Login request:', { email })
-  res.json({ success: true, token: 'fake_token_123' })
-})
-
-// Newsletter routes (placeholder)
-app.post('/api/newsletter/subscribe', (req, res) => {
-  const { email } = req.body
-  console.log('Newsletter subscription:', { email })
-  res.json({ success: true, message: 'Subscribed to newsletter' })
-})
-
-// Contact routes (placeholder)
-app.post('/api/contact', (req, res) => {
-  const { name, email, subject, message } = req.body
-  console.log('Contact message:', { name, email, subject })
-  res.json({ success: true, message: 'Message sent successfully' })
-})
-
-// Community/Forum routes (placeholder)
-app.get('/api/forum/discussions', (req, res) => {
-  res.json({
-    success: true,
-    discussions: [
-      {
-        id: 1,
-        title: 'Comment gérer le rejet au travail?',
-        author: 'Sarah',
-        replies: 12,
-      },
-    ],
-  })
-})
-
-app.post('/api/forum/discussions', (req, res) => {
-  const { title, content } = req.body
-  console.log('New discussion:', { title })
-  res.json({ success: true, message: 'Discussion created' })
+// Protected route example
+app.get('/api/profile', authMiddleware, (req: any, res) => {
+  res.json({ success: true, user: req.user })
 })
 
 // Error handling
@@ -77,7 +45,16 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
   res.status(500).json({ success: false, error: 'Internal server error' })
 })
 
+// 404 handler
+app.use((req, res) => {
+  res.status(404).json({ success: false, error: 'Route not found' })
+})
+
 // Start server
 app.listen(PORT, () => {
   console.log(`🚀 MomoMindset API running on port ${PORT}`)
+  console.log(`📝 API Documentation:`)
+  console.log(`   - Auth: POST /api/auth/register, /api/auth/login`)
+  console.log(`   - Forum: GET/POST /api/forum/discussions`)
+  console.log(`   - Newsletter: POST /api/newsletter/subscribe`)
 })
