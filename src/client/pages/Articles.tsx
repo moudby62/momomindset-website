@@ -48,4 +48,10 @@ export default function Articles() {
                 <p className="text-gray-300 mb-4">{article.excerpt}</p>
                 <a href="#" className="text-gold font-semibold hover:underline">Lire l'article →</a>
               </article>
-            ))}\n          </div>\n        </div>\n      </section>\n    </div>\n  )\n}\n
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}
