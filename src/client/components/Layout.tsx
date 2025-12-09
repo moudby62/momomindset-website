@@ -33,6 +33,7 @@ export default function Layout({ children }: LayoutProps) {
             <Link to="/about" className="hover:text-gold transition">À propos</Link>
             <Link to="/daily" className="hover:text-gold transition">Motivations</Link>
             <Link to="/articles" className="hover:text-gold transition">Articles</Link>
+            <Link to="/blog" className="hover:text-gold transition">Blog</Link>
             <Link to="/community" className="hover:text-gold transition">Communauté</Link>
             <Link to="/resources" className="hover:text-gold transition">Ressources</Link>
             <Link to="/contact" className="hover:text-gold transition">Contact</Link>
@@ -47,6 +48,7 @@ export default function Layout({ children }: LayoutProps) {
             <Link to="/about" className="hover:text-gold transition">À propos</Link>
             <Link to="/daily" className="hover:text-gold transition">Motivations</Link>
             <Link to="/articles" className="hover:text-gold transition">Articles</Link>
+            <Link to="/blog" className="hover:text-gold transition">Blog</Link>
             <Link to="/community" className="hover:text-gold transition">Communauté</Link>
             <Link to="/resources" className="hover:text-gold transition">Ressources</Link>
             <Link to="/contact" className="hover:text-gold transition">Contact</Link>
